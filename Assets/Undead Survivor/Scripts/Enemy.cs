@@ -71,4 +71,28 @@ public void Init(SpawnData data)
         health = data.health;
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Bullet"))
+            return;
+        //OnTriggerEnter2D 매개변수의 태그를 조건으로 활용        OnTriggerEnter2D가 되는 동안~
+        //충돌한 대상이 Bullet이 아니라면, return;
+
+        health -= collision.GetComponent<Bullet>().damage;
+            //health 자체에서 -= 뒤에 있는 데미지 만큼 뺀다.
+
+        if (health > 0){
+            // .. Live, hit Action
+        }
+        else {
+            // .. Die
+            Dead();
+        }
+    }
+
+    void Dead()
+    {
+        gameObject.SetActive(false);
+        // 사망할 땐 SetActive 함수를 통한 오브젝트 비활성화
+    }
 }
