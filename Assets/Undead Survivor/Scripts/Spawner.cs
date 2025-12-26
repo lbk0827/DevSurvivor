@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
     // 자식 오브젝트의 트랜스폼을 담을 배열 변수 선언;
     public Transform[] spawnPoint;
 
+    int level;
     float timer;
     //소환 타이머를 위한 변수 선언
 
@@ -19,8 +20,9 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        level = Mathf.FloorToInt(GameManager.instance.gameTime / 10f);
 
-        if (timer > 0.2f) {
+        if (timer > (level == 0 ? 0.5f : 0.2f)) {
             timer = 0;
             Spawn();
         }  
@@ -28,7 +30,7 @@ public class Spawner : MonoBehaviour
 
     void Spawn()
     {
-        GameObject enemy = GameManager.instance.pool.Get(Random.Range(0,2));
+        GameObject enemy = GameManager.instance.pool.Get(level);
         enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
     }
 }
