@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     //속도, 목표, 생존 여부를 위한 변수 선언.
     public float speed;
+    public float health;
+    public float maxHealth;
+    public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target;   //물리적으로 따라갈거니까 Rigidbody2d Target 설정.
 
-    bool isLive = true; //이 몬스터가 살아있는지 죽어있는지 분별해주는 isLive라는 bool 변수까지 추가.
+    bool isLive; //이 몬스터가 살아있는지 죽어있는지 분별해주는 isLive라는 bool 변수까지 추가.
     // 테스트 용이라서 "= true"를 추가해두었음. 나중에 수정 필요.
 
     //리지드바디2D와 스프라이트렌더러를 위한 변수 선언
     Rigidbody2D rigid;
     SpriteRenderer spriter;
+    Animator anim;
 
 
     // void Awake는 초기화 진행, 컴포넌트 사용하기 위해 GetComponent<타입>(); 선언. 
@@ -21,6 +26,7 @@ public class Enemy : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // 물리적인 이동이기 때문에 우리는 Update를 쓰지 않고, FixedUpdate();를 사용한다.
@@ -53,5 +59,16 @@ public class Enemy : MonoBehaviour
     // 스크립트가 활성화될 때, 호출되는 이벤트 함수.
     {
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
+        isLive = true;
+        health = maxHealth;
     }
+
+public void Init(SpawnData data)
+    {
+        anim.runtimeAnimatorController = animCon[data.spriteType];
+        speed = data.speed;
+        maxHealth = data.health;
+        health = data.health;
+    }
+
 }

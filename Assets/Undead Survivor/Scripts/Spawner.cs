@@ -7,6 +7,8 @@ public class Spawner : MonoBehaviour
 {
     // 자식 오브젝트의 트랜스폼을 담을 배열 변수 선언;
     public Transform[] spawnPoint;
+    public SpawnData[] spawnData;
+    // 만든 클래스를 그대로 타입으로 활용하여 배열 변수 선언
 
     int level;
     float timer;
@@ -22,7 +24,7 @@ public class Spawner : MonoBehaviour
         timer += Time.deltaTime;
         level = Mathf.FloorToInt(GameManager.instance.gameTime / 10f);
 
-        if (timer > (level == 0 ? 0.5f : 0.2f)) {
+        if (timer > (spawnData[level].spawnTime)) {
             timer = 0;
             Spawn();
         }  
@@ -30,7 +32,18 @@ public class Spawner : MonoBehaviour
 
     void Spawn()
     {
-        GameObject enemy = GameManager.instance.pool.Get(level);
+        GameObject enemy = GameManager.instance.pool.Get(0);
         enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
+        enemy.GetComponent<Enemy>().Init(spawnData[level]);
     }
+}
+
+[System.Serializable]
+public class SpawnData
+{
+    public int spriteType;
+    public float spawnTime;
+    public int health;
+    public float speed;
+    // 추가할 속성들 : 스프라이트 타입, 소환 시간, 체력, 속도
 }
