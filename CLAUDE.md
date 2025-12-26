@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Related Documents
+
+- [MENTOR_RULE.md](./MENTOR_RULE.md) - 멘토 역할 및 가이드라인
+
 ## Project Overview
 
 DevSurvivor는 Unity 2D로 제작된 뱀파이어 서바이벌 스타일 게임입니다. 플레이어가 끊임없이 몰려오는 적들을 피하며 생존하는 게임입니다.
