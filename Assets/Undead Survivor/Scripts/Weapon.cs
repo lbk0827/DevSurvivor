@@ -15,20 +15,26 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
-        init();
+        Init();
     }
 
 
     void Update()
     {
-    
+        switch (id) {
+            case 0:
+                transform.Rotate(Vector3.back * speed * Time.deltaTime);
+                break;
+            default:
+                break;
+        }        
     }
 
-    public void init()
+    public void Init()
     {
         switch (id) {
             case 0:
-                speed = -150;
+                speed = 150;
                 Batch();
                 break;
             default:
@@ -43,6 +49,10 @@ public class Weapon : MonoBehaviour
             Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
             bullet.parent = transform;
             //parent 속성을 통해 부모 변경
+
+            Vector3 rotVec = Vector3.forward * 360 * index / count;
+            bullet.Rotate(rotVec);
+            bullet.Translate(bullet.up * 1.5f, Space.World); // 이동 방향은 Space.world 기준
             bullet.GetComponent<Bullet>().init(damage, -1); // -1 을 넣은 이유는 무한으로 관통할 것입니다의 의미. -1 is Infinity per.
         }
 
