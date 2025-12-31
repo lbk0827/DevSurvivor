@@ -27,7 +27,21 @@ public class Weapon : MonoBehaviour
                 break;
             default:
                 break;
-        }        
+        }     
+
+        // .. TEST CODE ..
+        if (Input.GetButtonDown("Jump")) {
+            LevelUp(20, 5);
+        }
+    }
+
+    public void LevelUp(float damage, int count)
+    {
+        this.damage = damage;
+        this.count += count;
+    
+        if (id == 0)
+            Batch();
     }
 
     public void Init()
@@ -46,9 +60,20 @@ public class Weapon : MonoBehaviour
     {
         //for문으로 count만큼 풀링에서 가져오기
         for (int index=0; index < count; index++){
-            Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
-            bullet.parent = transform;
-            //parent 속성을 통해 부모 변경
+            Transform bullet;
+            //자신의 자식 오브젝트 개수 확인은 childCount 속성
+            if (index < transform.childCount) {
+                bullet = transform.GetChild(index); // index가 아직 childCount 범위 내라면 GetChild 함수로 가져오기
+            }
+            else {
+                bullet = GameManager.instance.pool.Get(prefabId).transform;
+                bullet.parent = transform;
+                            //parent 속성을 통해 부모 변경
+            }
+            
+            // 위치와 회전 초기화 (풀링에서 가져온 오브젝트의 이전 값 제거)
+            bullet.localPosition = Vector3.zero;
+            bullet.localRotation = Quaternion.identity;
 
             Vector3 rotVec = Vector3.forward * 360 * index / count;
             bullet.Rotate(rotVec);
