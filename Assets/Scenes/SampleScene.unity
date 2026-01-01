@@ -240,6 +240,7 @@ Transform:
   - {fileID: 723895164}
   - {fileID: 382651937}
   - {fileID: 616695559}
+  - {fileID: 119051526}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &5018886
@@ -391,6 +392,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 382651937}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &119051525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 119051526}
+  - component: {fileID: 119051527}
+  m_Layer: 0
+  m_Name: Weapon 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &119051526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119051525}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5018885}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &119051527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119051525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de716be1082d4752b76c33c7f36a879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 1
+  prefabId: 2
+  damage: 3
+  count: 0
+  speed: 0
 --- !u!1 &133833204
 GameObject:
   m_ObjectHideFlags: 0
@@ -5115,7 +5165,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.791667
+  orthographic size: 27.553072
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10051,6 +10101,7 @@ MonoBehaviour:
   prefabs:
   - {fileID: 5180472349776896775, guid: bd150fe83b3664f13b4df9695a101165, type: 3}
   - {fileID: 7673085058469063351, guid: ef536b1aca36948269ddd1ab54d52542, type: 3}
+  - {fileID: 5804065900133624466, guid: e9c3589ab33ce41c6a16f724bc16c4d3, type: 3}
 --- !u!4 &1231790054
 Transform:
   m_ObjectHideFlags: 0
@@ -18890,6 +18941,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 273266098}
-  - {fileID: 2022200578}
   - {fileID: 1231790054}
+  - {fileID: 2022200578}
   - {fileID: 5018885}
